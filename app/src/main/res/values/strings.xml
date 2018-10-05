@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Sysprotec</string>
+    <string name="unlocked">Unlocked</string>
+    <string name="locked">Locked</string>
+    <string name="appInstalled">App Installed</string>
+    <string name="untrustedAppFound">Untrusted App: %s</string>
+</resources>
