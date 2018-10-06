@@ -4,4 +4,7 @@
     <string name="locked">Locked</string>
     <string name="appInstalled">App Installed</string>
     <string name="untrustedAppFound">Untrusted App: %s</string>
+    <string name="preventInstall">Prevent app installations</string>
+    <string name="warnOnInstall">Notify on installation</string>
+    <string name="disableAdmin">Remove device admin permissions</string>
 </resources>
