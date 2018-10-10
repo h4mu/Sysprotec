@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
             Set<String> packages = new HashSet<>();
             List<ApplicationInfo> installedApplications = getPackageManager().getInstalledApplications(PackageManager.GET_META_DATA);
             for (ApplicationInfo appInfo : installedApplications) {
-                if (appInfo.enabled && (appInfo.flags & (ApplicationInfo.FLAG_SYSTEM | ApplicationInfo.FLAG_UPDATED_SYSTEM_APP)) == 0) {
-                    packages.add(appInfo.packageName);
-                }
+                packages.add(appInfo.packageName);
             }
             editor.putStringSet("packages", packages);
         }
