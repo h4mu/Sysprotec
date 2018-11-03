@@ -3,6 +3,7 @@ package io.github.h4mu.sysprotec;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -28,10 +29,14 @@ public class MainActivity extends AppCompatActivity {
         ((ToggleButton) findViewById(R.id.toggleButton)).setChecked(sharedPref.getBoolean("locked", false));
         ToggleButton installDisableToggleButton = findViewById(R.id.installDisableToggleButton);
         installDisableToggleButton.setChecked(sharedPref.getBoolean("installDisabled", false));
+        updateButtonStatuses();
+    }
+
+    private void updateButtonStatuses() {
         DevicePolicyManager devicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         ComponentName name = new ComponentName(this, AdminReceiver.class);
         boolean isAdmin = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && devicePolicyManager.isAdminActive(name);
-        installDisableToggleButton.setEnabled(isAdmin);
+        findViewById(R.id.installDisableToggleButton).setEnabled(isAdmin);
         findViewById(R.id.disableAdminButton).setEnabled(isAdmin);
     }
 
@@ -48,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
         editor.putBoolean("locked", button.isChecked());
         editor.apply();
-        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-        ComponentName name = new ComponentName(this, AdminReceiver.class);
-        findViewById(R.id.installDisableToggleButton).setEnabled(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && devicePolicyManager.isAdminActive(name));
+        updateButtonStatuses();
     }
 
     public void installDisableClicked(View view) {
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 devicePolicyManager.clearUserRestriction(name, UserManager.DISALLOW_INSTALL_APPS);
             }
         }
+        updateButtonStatuses();
     }
 
     public void disableAdminClicked(View view) {
@@ -83,5 +87,14 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && devicePolicyManager.isAdminActive(name)) {
             devicePolicyManager.clearDeviceOwnerApp(getPackageName());
         }
+        updateButtonStatuses();
+    }
+
+    public void onLicenseClicked(View view) {
+        startActivity(new Intent(this, LicenseActivity.class));
+    }
+
+    public void onApplicationsHistoryClicked(View view) {
+        startActivity(new Intent(this, AppsHistoryActivity.class));
     }
 }

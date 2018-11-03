@@ -14,6 +14,7 @@
             android:id="@+id/toggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:checked="false"
             android:onClick="toggleClicked"
             android:text="ToggleButton"
@@ -24,6 +25,7 @@
             android:id="@+id/installDisableToggleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="installDisableClicked"
             android:text="ToggleButton"
             android:textOff="@string/preventInstall"
@@ -33,9 +35,26 @@
             android:id="@+id/disableAdminButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="disableAdminClicked"
             android:text="@string/disableAdmin"
             tools:text="@string/disableAdmin" />
+
+        <Button
+            android:id="@+id/hiddenApplicationsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onApplicationsHistoryClicked"
+            android:text="@string/hidden_applications" />
+
+        <Button
+            android:id="@+id/licenseButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onLicenseClicked"
+            android:text="@string/license" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

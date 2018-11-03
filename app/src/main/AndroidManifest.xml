@@ -23,10 +23,10 @@
             android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
+
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".AdminReceiver"
             android:enabled="true"
@@ -35,10 +35,15 @@
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/device_admin" />
         </receiver>
+
+        <activity android:name=".AppsHistoryActivity" />
+        <activity android:name=".LicenseActivity" />
+        <activity android:name=".AppDetailActivity"></activity>
     </application>
 
 </manifest>
